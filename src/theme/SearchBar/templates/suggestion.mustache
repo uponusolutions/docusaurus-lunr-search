@@ -1,0 +1,24 @@
+<a class="algolia-docsearch-suggestion
+    {{#isCategoryHeader}}algolia-docsearch-suggestion__main{{/isCategoryHeader}}
+    {{#isSubCategoryHeader}}algolia-docsearch-suggestion__secondary{{/isSubCategoryHeader}}
+    "
+    aria-label="Link to the result"
+    href="{{{url}}}"
+    >
+    <div class="algolia-docsearch-suggestion--category-header">
+        <span class="algolia-docsearch-suggestion--category-header-lvl0">{{{category}}}</span>
+    </div>
+    <div class="algolia-docsearch-suggestion--wrapper">
+      <div class="algolia-docsearch-suggestion--subcategory-column">
+        <span class="algolia-docsearch-suggestion--subcategory-column-text">{{{subcategory}}}</span>
+      </div>
+      {{#isTextOrSubcategoryNonEmpty}}
+      <div class="algolia-docsearch-suggestion--content">
+        <div class="algolia-docsearch-suggestion--subcategory-inline">{{{subcategory}}}</div>
+        <div class="algolia-docsearch-suggestion--title">{{{title}}}</div>
+        {{#text}}<div class="algolia-docsearch-suggestion--text">{{{text}}}</div>{{/text}}
+        {{#version}}<div class="algolia-docsearch-suggestion--version">{{version}}</div>{{/version}}
+      </div>
+      {{/isTextOrSubcategoryNonEmpty}}
+    </div>
+</a>

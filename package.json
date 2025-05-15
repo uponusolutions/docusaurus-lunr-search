@@ -49,7 +49,6 @@
     "gauge": "^3.0.2",
     "hast-util-select": "^4.0.2",
     "hast-util-to-text": "^2.0.1",
-    "hogan.js": "^3.0.2",
     "lunr": "^2.3.9",
     "lunr-languages": "^1.4.0",
     "mark.js": "^8.11.1",
@@ -57,7 +56,8 @@
     "rehype-parse": "^7.0.1",
     "to-vfile": "^6.1.0",
     "unified": "^9.2.2",
-    "unist-util-is": "^4.1.0"
+    "unist-util-is": "^4.1.0",
+    "wontache-loader": "^0.1.0"
   },
   "devDependencies": {
     "mocha": "^8.4.0"

@@ -1,7 +1,12 @@
-import Hogan from "hogan.js";
 import LunrSearchAdapter from "./lunar-search";
 import autocomplete from "autocomplete.js";
-import templates from "./templates";
+
+import empty from './templates/empty.mustache';
+import footer from './templates/footer.mustache';
+import searchBox from './templates/searchBox.mustache';
+import suggestion from './templates/suggestion.mustache';
+import suggestionSimple from './templates/suggestionSimple.mustache';
+
 import utils from "./utils";
 import $ from "autocomplete.js/zepto";
 
@@ -56,9 +61,9 @@ class DocSearch {
             {
                 source: this.getAutocompleteSource(transformData, queryHook),
                 templates: {
-                    suggestion: DocSearch.getSuggestionTemplate(this.isSimpleLayout),
-                    footer: templates.footer,
-                    empty: DocSearch.getEmptyTemplate()
+                    suggestion: this.isSimpleLayout ? suggestionSimple : suggestion,
+                    footer: footer,
+                    empty: empty
                 }
             }
         ]);
@@ -99,7 +104,7 @@ class DocSearch {
     }
 
     static injectSearchBox(input) {
-        input.before(templates.searchBox);
+        input.before(searchBox());
         const newInput = input
             .prev()
             .prev()
@@ -254,18 +259,6 @@ class DocSearch {
         console.warn("no anchor nor url for : ", JSON.stringify(hit));
         /* eslint-enable */
         return null;
-    }
-
-    static getEmptyTemplate() {
-        return args => Hogan.compile(templates.empty).render(args);
-    }
-
-    static getSuggestionTemplate(isSimpleLayout) {
-        const stringTemplate = isSimpleLayout
-            ? templates.suggestionSimple
-            : templates.suggestion;
-        const template = Hogan.compile(stringTemplate);
-        return suggestion => template.render(suggestion);
     }
 
     handleSelected(input, event, suggestion, datasetNumber, context = {}) {

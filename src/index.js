@@ -4,9 +4,10 @@ const path = require('path')
 const lunr = require('lunr')
 const { Worker } = require('worker_threads')
 const Guage = require('gauge')
-
 // local imports
 const utils = require('./utils')
+
+var pathToModule = require.resolve('wontache-loader');
 
 module.exports = function (context, options) {
   options = options || {};
@@ -31,7 +32,14 @@ module.exports = function (context, options) {
         const generatedFilesDir = config.resolve.alias['@generated']
         languages = utils.generateLunrClientJS(generatedFilesDir, options.languages);
       }
-      return {};
+
+      return  {
+        module: {
+          rules: [
+            {test: /\.mustache$/, use: pathToModule}
+          ]
+        },
+      }
     },
     async contentLoaded({ actions }) {
       actions.setGlobalData({ "fileNames": fileNames })

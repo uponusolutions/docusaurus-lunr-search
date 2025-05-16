@@ -36,7 +36,7 @@ module.exports = function (context, options) {
       return  {
         module: {
           rules: [
-            {test: /\.mustache$/, use: pathToModule}
+            {test: /\.mustache$/, loader: pathToModule, options: options.wontache || {}}
           ]
         },
       }
